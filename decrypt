@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+const inquirer = require('inquirer');
+const figlet = require('figlet');
+const chalk = require('chalk');
+
+const { decrypt, check } = require('./index');
+
+console.log(figlet.textSync('decrypt'));
+
+check();
+
+const promptList = [{
+  type: 'password',
+  message: '请输入密钥:',
+  name: 'key1',
+}];
+
+inquirer.prompt(promptList).then((answers) => {
+  try {
+    decrypt(answers.key1);
+    console.log(chalk.blue('解密成功！'));
+  } catch (e) {
+    console.log(chalk.red(e));
+  }
+});

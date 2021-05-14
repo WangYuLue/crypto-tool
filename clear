@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+const inquirer = require('inquirer');
+const figlet = require('figlet');
+const chalk = require('chalk');
+
+const { clear, check } = require('./index');
+
+console.log(chalk.red(figlet.textSync('clear')));
+
+check();
+
+const promptList = [{
+  type: 'confirm',
+  message: '确定删除当前明文目录中的文件？',
+  name: 'flag',
+}];
+
+inquirer.prompt(promptList).then((answers) => {
+  try {
+    if (!answers.flag) {
+      console.log('取消删除');
+    } else {
+      clear();
+      console.log(chalk.red('删除成功'));
+    }
+  } catch (e) {
+    console.log(chalk.red(e));
+  }
+});

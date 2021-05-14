@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+const inquirer = require('inquirer');
+const figlet = require('figlet');
+const chalk = require('chalk');
+
+const { encrypt, check } = require('./index');
+
+console.log(figlet.textSync('encrypt'));
+
+check();
+
+const promptList = [{
+  type: 'password',
+  message: '请输入密钥:',
+  name: 'key1',
+}, {
+  type: 'password',
+  message: '请再次输入密钥:',
+  name: 'key2',
+}];
+
+inquirer.prompt(promptList).then((answers) => {
+  try {
+    if (!answers.key1 || !answers.key2) {
+      throw ('失败：密钥输入不能为空');
+    }
+    if (answers.key1 !== answers.key2) {
+      throw ('失败：两次密钥输入不一致');
+    }
+    encrypt(answers.key1);
+    console.log(chalk.blue('加密成功！'));
+  } catch (e) {
+    console.log(chalk.red(e));
+  }
+});

@@ -1,0 +1,13 @@
+{
+  "name": "mima",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "wanger <1206180097@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^4.1.1",
+    "figlet": "^1.5.0",
+    "ini": "^2.0.0",
+    "inquirer": "^8.0.0"
+  }
+}
