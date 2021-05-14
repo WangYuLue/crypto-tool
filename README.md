@@ -1,5 +1,9 @@
 # 使用须知
 
+
+https://user-images.githubusercontent.com/19245919/118264079-bdd27c80-b4e9-11eb-8be6-90d9d231b2dd.mp4
+
+
 ## 场景
 
 有些内容需要加密储存，例如 密码，私钥，日记 等等，这个小工具就是做这件事
