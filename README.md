@@ -1,7 +1,9 @@
 # 使用须知
 
 
-https://user-images.githubusercontent.com/19245919/118264079-bdd27c80-b4e9-11eb-8be6-90d9d231b2dd.mp4
+
+https://user-images.githubusercontent.com/19245919/118264176-e3f81c80-b4e9-11eb-9ea5-dc68e5402bb9.mp4
+
 
 
 ## 场景
