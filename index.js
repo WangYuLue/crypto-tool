@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const ini = require('ini');
 
-const { decryptByAes192, encryptByAes192 } = require('./utils/crypto');
+const { decryptByAes256, encryptByAes256 } = require('./utils/crypto');
 const { readFileContent, writeFileContent } = require('./utils/io');
 
 const encSuffix = '.enc';
@@ -41,7 +41,7 @@ function encrypt(secretkey) {
       const encFilePath = path.resolve(config.encDir, file + encSuffix);
       // console.log({ decFilePath, encFilePath });
       const content = readFileContent(decFilePath);
-      const encConent = encryptByAes192(content, { secretkey });
+      const encConent = encryptByAes256(content, { secretkey });
       writeFileContent(encFilePath, encConent)
     }
   });
@@ -61,7 +61,7 @@ function decrypt(secretkey) {
     const content = readFileContent(encFilePath);
     let decConent = '';
     try {
-      decConent = decryptByAes192(content, { secretkey });
+      decConent = decryptByAes256(content, { secretkey });
     } catch (e) {
       console.log(String(e));
       throw `${encFilePath} 解密失败，可能原因：密钥错误`

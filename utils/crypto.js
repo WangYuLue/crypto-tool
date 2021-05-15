@@ -9,16 +9,6 @@ const defaultIv = 'earth';
 // }
 
 /**
- * 字符串转 Buffer
- * 
- * @param {string} str 
- * @returns {Buffer}
- */
-function toBuffer(str) {
-  return Buffer.from(str, 'utf8');
-};
-
-/**
  * 生成符合规范的密钥
  * 
  * @param {string} secret 
@@ -36,9 +26,9 @@ function genkey(secret, length = 32) {
  * @param {cryptOptions} options 
  * @returns {string}
  */
-function decryptByAes192(content, options = {}) {
+function decryptByAes256(content, options = {}) {
   const { secretkey, iv } = options;
-  const decipher = crypto.createDecipheriv('aes-256-cbc', genkey(toBuffer(secretkey || defaultSecretkey)), genkey(toBuffer(iv || defaultIv), 16));
+  const decipher = crypto.createDecipheriv('aes-256-cbc', genkey(secretkey || defaultSecretkey), genkey(iv || defaultIv, 16));
   let dec = decipher.update(content, 'hex', 'utf8');
   dec += decipher.final('utf8');
   return dec;
@@ -51,15 +41,15 @@ function decryptByAes192(content, options = {}) {
  * @param {cryptOptions} options 
  * @returns {string}
  */
-function encryptByAes192(content, options = {}) {
+function encryptByAes256(content, options = {}) {
   const { secretkey, iv } = options;
-  const cipher = crypto.createCipheriv('aes-256-cbc', genkey(toBuffer(secretkey || defaultSecretkey)), genkey(toBuffer(iv || defaultIv), 16));
+  const cipher = crypto.createCipheriv('aes-256-cbc', genkey(secretkey || defaultSecretkey), genkey(iv || defaultIv, 16));
   let enc = cipher.update(content, 'utf8', 'hex');
   enc += cipher.final('hex');
   return enc;
 }
 
 module.exports = {
-  decryptByAes192,
-  encryptByAes192
+  decryptByAes256,
+  encryptByAes256
 }
